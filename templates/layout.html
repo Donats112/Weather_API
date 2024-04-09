@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laikapstākļi</title>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <!-- icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <style>
+        /* here goes css */
+        body{
+          background: rgb(255,255,255);
+          background: linear-gradient(180deg, rgba(255,255,255,1) 3%, rgba(34,108,145,1) 16%, rgba(0,83,125,1) 26%, rgba(30,101,166,1) 47%, rgba(0,212,255,1) 72%, rgba(15,175,161,1) 76%, rgba(41,111,0,1) 100%);
+          padding-top: 30px;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        #div-results{
+          padding-top: 40px;
+          margin: 20px;
+          background: rgb(255,222,0);
+          background: radial-gradient(circle, rgba(255,222,0,1) 0%, rgba(0,212,255,1) 35%, rgba(30,120,171,1) 100%);
+        }
+        p{
+          font-size: 40px;
+          display: inline-block;
+          margin: 5px;
+        }
+        #main-content{
+          height: 100%;
+        }
+        .column-sm{
+          margin:15px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="main-container">
+      <!-- input form -->
+      <div class="d-flex justify-content-center">
+        <div class="col-12">
+            <form action="/get_weather" method="POST">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-search"></i>
+                    </span>
+                    <input
+                    type="text"
+                    name="city"
+                    class="form-control"
+                    placeholder="Ievadīt pilsētu"
+                    id="inp-city"
+                    />
+                    <select name="days" id="">
+                      <option value="1">šobrīd</option>
+                      <option value="5">5 dienas</option>
+                    </select>
+                    <input
+                    class="btn btn-secondary"
+                    type="submit"
+                    id="btn-search"
+                    value="Meklēt"
+                    >
+                </div>
+            </form>
+            <div id="div-results" class="container">
+              {% if temp %}
+                <p>{{city_name}} {{country}}</p><br>
+                <p>Šī brīža laikapstākļi:</p> <br>
+                <p>{{temp}}°C</p>
+                <p>{{weather}}</p>
+                <img src="{{icon_url}}" alt="">
+              {% elif temp2 %}
+                <p>{{city_name}} {{country}}</p><br>
+                <div class="d-flex">
+                  <div class="column-sm">
+                    <p>{{dates[0][0:10]}}</p> <br>
+                    <img src="{{icon[0]}}" alt=""> <br>
+                    <p>{{temp2[0]}}°C</p> <br>
+                    <p>{{weather[0]}}</p> <br>
+                  </div>
+                  <div class="column-sm">
+                    <p>{{dates[1][0:10]}}</p> <br>
+                    <img src="{{icon[1]}}" alt=""> <br>
+                    <p>{{temp2[1]}}°C</p> <br>
+                    <p>{{weather[1]}}</p> <br>
+                  </div>
+                  <div class="column-sm">
+                    <p>{{dates[2][0:10]}}</p> <br>
+                    <img src="{{icon[2]}}" alt=""> <br>
+                    <p>{{temp2[2]}}°C</p> <br>
+                    <p>{{weather[2]}}</p> <br>
+                  </div>
+                  <div class="column-sm">
+                    <p>{{dates[3][0:10]}}</p> <br>
+                    <img src="{{icon[3]}}" alt=""> <br>
+                    <p>{{temp2[3]}}°C</p> <br>
+                    <p>{{weather[3]}}</p> <br>
+                  </div>
+                  <div class="column-sm">
+                    <p>{{dates[4][0:10]}}</p> <br>
+                    <img src="{{icon[4]}}" alt=""> <br>
+                    <p>{{temp2[4]}}°C</p> <br>
+                    <p>{{weather[4]}}</p> <br>
+                  </div>
+                </div>
+              {% elif text %}
+                <p>{{text}}</p>
+              {% endif %} 
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- javascript -->
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
